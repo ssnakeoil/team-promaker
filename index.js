@@ -10,8 +10,10 @@ const employeeIds = [];
 
 console.log("Welcome to Team Pro(file)Maker!");
 
+// the function containing the inquirer prompts to collect team memeber data
 function dialogue() {
   function createManager() {
+    //creates manager
     console.log("Build your team!");
     inquirer
       .prompt([
@@ -50,6 +52,7 @@ function dialogue() {
   }
 
   function createTeam() {
+    //prompt to add specific types
     inquirer
       .prompt([
         {
@@ -113,4 +116,54 @@ function dialogue() {
         createTeam();
       });
   }
+
+  function addIntern() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "internName",
+          message: "Please enter the intern's name:",
+        },
+        {
+          type: "input",
+          name: "internId",
+          message: "Please enter the intern's ID:",
+        },
+        {
+          type: "input",
+          name: "internEmail",
+          message: "Please enter the intern's email:",
+        },
+        {
+          type: "input",
+          name: "internSchool",
+          message: "Please enter the intern's school:",
+        },
+      ])
+      .then((answers) => {
+        const intern = new Intern(
+          answers.internName,
+          answers.internId,
+          answers.internEmail,
+          answers.internSchool
+        );
+        teamMembers.push(intern);
+        employeeIds.push(answers.internId);
+        createTeam();
+      });
+  }
+
+  function buildTeam() {
+    // if the output directory doesn't exist, create it
+    if (!fs.existsSync(OUTPUT_DIR)) {
+      fs.mkdirSync(OUTPUT_DIR);
+    }
+    fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
+  }
+  createManager();
+  // restarts the dialogue function to add more team members
 }
+
+// function call to initialize program
+dialogue();
