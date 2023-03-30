@@ -67,7 +67,7 @@ function dialogue() {
           choices: [
             "Engineer",
             "Intern",
-            "I don't want to add any more team members",
+            "I don't have any more team members to add",
           ],
         },
       ])
