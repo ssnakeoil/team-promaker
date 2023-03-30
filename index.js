@@ -8,7 +8,7 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "output.html");
 
-const render = require("./src/page-template.js");
+const render = require("./src/site-template.js");
 
 const teamMembers = [];
 const employeeIds = [];
@@ -67,7 +67,7 @@ function dialogue() {
           choices: [
             "Engineer",
             "Intern",
-            "I don't have any more team members to add",
+            "No more team members to add",
           ],
         },
       ])
